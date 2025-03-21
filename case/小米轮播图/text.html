@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小米轮播图</title>
+  <style>
+    .box {
+      position: relative;
+      width: 1000px;
+      height: 460px;
+      background-color: pink;
+      margin: 100px auto;
+    }
+
+    .box img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .box ul {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+    }
+
+    .box ul li {
+      float: left;
+      list-style: none;
+      margin: 0 5px;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      background-color: #7e7e7e;
+    }
+
+    .left {
+      position: absolute;
+      top: 50%;
+      margin-top: -50px;
+      left: 0;
+      width: 55px;
+      height: 100px;
+      /* background-color: pink; */
+      font-size: 75px;
+      font-weight: 400;
+      color: #d3d3d4;
+    }
+
+    .right {
+      position: absolute;
+      top: 50%;
+      margin-top: -50px;
+      right: 0;
+      width: 55px;
+      height: 100px;
+      /* background-color: pink; */
+      font-size: 75px;
+      font-weight: 400;
+      color: #d3d3d4;
+    }
+
+    .left:hover {
+      background-color: #7e7e7e;
+    }
+
+    .right:hover {
+      background-color: #7e7e7e;
+    }
+
+    .box ul li.active {
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <img src="./images/1.jpg" alt="">
+    <ul>
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="left">
+      &lt; </div>
+    <div class="right">&gt;</div>
+  </div>
+  <script>
+    let arr = [
+      { url: './images/1.jpg' },
+      { url: './images/2.jpg' },
+      { url: './images/3.jpg' },
+      { url: './images/4.jpg' },
+      { url: './images/5.jpg' },
+      { url: './images/6.jpg' }
+    ]
+    // 获取img
+    const img = document.querySelector('.box img')
+    // 获取右anniu
+    const right = document.querySelector('.right')
+    let i = 0
+    right.addEventListener('click', function () {
+      i++
+      i = i > arr.length - 1 ? 0 : i
+      img.src = arr[i].url
+      // 先删除上一个小圆点
+      document.querySelector('.box ul .active').classList.remove('active')
+      // 再给下一个添加
+      document.querySelector(`.box ul li:nth-child(${i + 1})`).classList.add('active')
+    })
+    // 获取左按钮
+    const left = document.querySelector('.left')
+    left.addEventListener('click', function () {
+      i--
+      i = i < 0 ? arr.length - 1 : i
+      img.src = arr[i].url
+      // 先删除上一个小圆点
+      document.querySelector('.box ul .active').classList.remove('active')
+      // 再给下一个添加
+      document.querySelector(`.box ul li:nth-child(${i + 1})`).classList.add('active')
+    })
+
+    // 自动播放
+    let n = setInterval(function () {
+      right.click()
+    }, 1000)
+    // 获取整个盒子
+    const box = document.querySelector('.box')
+    box.addEventListener('mouseenter', function () {
+      clearInterval(n)
+    })
+    box.addEventListener('mouseleave', function () {
+      n = setInterval(function () {
+        right.click()
+      }, 1000)
+    })
+  </script>
+</body>
+
+</html>

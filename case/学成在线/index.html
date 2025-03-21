@@ -22,7 +22,7 @@
       </ul>
     </div>
     <div class="search">
-      <input type="text" value="请输入关键词">
+      <input type="text" placeholder="请输入关键词">
       <button><img src="./images/search.png" alt=""></button>
     </div>
     <div class="user">
@@ -69,7 +69,7 @@
     </div>
   </div>
   <!-- 精品推荐导航栏模块 -->
-  <div class="goods w">
+  <div class="goods w" data-name="xczx-popular">
     <h3>精品推荐</h3>
     <ul>
       <li><a href="#">JQuery</a></li>
@@ -147,7 +147,7 @@
     </div>
   </div>
   <!-- 编程入门导航栏模块 -->
-  <div class="programing w">
+  <div class="programing w " data-name="xczx-program">
     <h3>编程入门</h3>
     <ul>
       <li><a href="#">热门</a></li>
@@ -193,7 +193,7 @@
     </ul>
   </div>
   <!-- 数据分析师导航栏模块 -->
-  <div class="data w">
+  <div class="data w " data-name="xczx-analysis">
     <h3>数据分析师</h3>
     <ul>
       <li><a href="#">热门</a></li>
@@ -239,7 +239,7 @@
     </ul>
   </div>
   <!-- 机器学习工程师导航栏模块 -->
-  <div class="mac w">
+  <div class="mac w" data-name="xczx-machine">
     <h3>机器学习工程师</h3>
     <ul>
       <li><a href="#">热门</a></li>
@@ -280,7 +280,7 @@
     </ul>
   </div>
   <!-- 前端开发工程师导航栏模块 -->
-  <div class="web w">
+  <div class="web w" data-name="xczx-web">
     <h3>前端开发工程师</h3>
     <ul>
       <li><a href="#">热门</a></li>
@@ -355,6 +355,18 @@
       </div>
     </div>
   </div>
+  <!-- 电梯导航 -->
+  <div class="elevator">
+    <ul class="elevator-list">
+      <li data-name="popular"><a href="javascript:;">精品<br>推荐</a></li>
+      <li data-name="program"><a href="javascript:;">编程<br>入门</a></li>
+      <li data-name="analysis"><a href="javascript:;">数据<br>分析</a></li>
+      <li data-name="machine"><a href="javascript:;">机器<br>学习</a></li>
+      <li data-name="web"><a href="javascript:;">前端<br>开发</a></li>
+      <li id="top"><a href="javascript:;">返回<br>顶部</a></li>
+    </ul>
+  </div>
+  <script src="index.js"></script>
 </body>
 
 </html>
