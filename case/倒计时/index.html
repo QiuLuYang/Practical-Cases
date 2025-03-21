@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 250px;
+      height: 350px;
+      margin: 100px auto;
+      text-align: center;
+      color: white;
+      background-color: #9d2b2a;
+    }
+
+    .now-time {
+      display: inline-block;
+      font-size: 12px;
+      margin-top: 15px;
+    }
+
+    .vacation {
+      font-size: 30px;
+      font-weight: 700;
+      padding: 10px;
+    }
+
+    i {
+      font-style: normal;
+    }
+
+    span {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #32362e;
+    }
+
+    .future-time {
+      display: inline-block;
+      font-size: 15px;
+      margin-top: 120px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <p class="now-time">今天是2025年3月20日</p>
+    <p class="vacation">放假倒计时</p>
+    <span class="days">7</span>
+    <i>天</i>
+    <span class="hour">7</span>
+    <i>时</i>
+    <span class="minute">55</span>
+    <i>分</i>
+    <span class="second">23</span>
+    <i>秒</i>
+    <p class="future-time">2025年07月06号放假</p>
+  </div>
+  <script>
+    function getTime() {
+      //获取当前的时间戳
+      const now = + new Date();
+      const future = +new Date('2025-7-6 00:00:00')
+      // console.log(now, future)
+      // 得到剩余的时间戳
+      const count = (future - now) / 1000
+
+      // 转换为对应时间
+      let d = parseInt(count / 3600 / 24)
+      d = d > 10 ? d : '0' + d
+      // console.log(day)
+      let h = parseInt(count / 60 / 60 % 24)
+      h = h > 10 ? h : '0' + h
+      let m = parseInt(count / 60 % 60)
+      m = m > 10 ? m : '0' + m
+      let s = parseInt(count % 60)
+      s = s > 10 ? s : '0' + s
+
+      const day = document.querySelector('.days')
+      const hour = document.querySelector('.hour')
+      const minute = document.querySelector('.minute')
+      const second = document.querySelector('.second')
+      const date = document.querySelector('.now-time')
+      date.innerHTML = `今天是${new Date().getFullYear()}年${new Date().getMonth() + 1}月${new Date().getDate()}日`
+      day.innerHTML = d
+      hour.innerHTML = h
+      minute.innerHTML = m
+      second.innerHTML = s
+    }
+
+    // 
+    getTime()
+    setInterval(function () {
+      getTime()
+    }, 1000)
+  </script>
+</body>
+
+</html>
