@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>放假倒计时</title>
+  <style>
+    .box {
+      width: 250px;
+      height: 350px;
+      background-color: #9d2b2a;
+      margin: 100px auto;
+      color: #fff;
+    }
+
+    .nows {
+      text-align: center;
+      font-size: 14px;
+      padding-top: 20px;
+    }
+
+    h1 {
+      font-weight: 500;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 26px;
+      text-align: center;
+      padding-top: 4px;
+      background-color: #2d3533;
+      margin-left: 4px;
+    }
+
+    i {
+      font-style: normal;
+      font-size: 12px;
+      vertical-align: bottom;
+    }
+
+    h3 {
+      margin-top: 110px;
+      text-align: center;
+      font-weight: 400;
+      font-size: 18px;
+    }
+
+    .days {
+      margin-left: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <p class="nows">今天是2025年3月22日</p>
+    <h1>放假倒计时</h1>
+    <span class="days">12</span><i>天</i>
+    <span class="hour">12</span><i>时</i>
+    <span class="minute">12</span><i>分</i>
+    <span class="second">12</span><i>秒</i>
+
+    <h3>2025年07月06日放假</h3>
+  </div>
+
+  <script>
+    const now = document.querySelector('.nows')
+    let year = new Date().getFullYear()
+    let day = new Date().getMonth()
+    day = day > 10 ? day : '0' + day
+    let date = new Date().getDate()
+    date = date > 10 ? date : '0' + date
+    // console.log(day)
+    now.innerHTML = `今天是${year}年${day}月${date}日`
+
+    // 获取将来的时间戳
+    const future = +new Date('2025/7/6 00:00:00')
+    // console.log(future)
+
+    const days = document.querySelector('.days')
+    const hour = document.querySelector('.hour')
+    const minute = document.querySelector('.minute')
+    const second = document.querySelector('.second')
+
+    getDate()
+    setInterval(getDate, 1000)
+
+    // 函数封装
+    function getDate() {
+      // 获取当前的时间戳
+      const nowTime = +new Date()
+      // console.log(nowTime)
+      // 时间差
+      const interval = (future - nowTime) / 1000
+
+      let d = parseInt(interval / 60 / 60 / 24)
+      d = d > 10 ? d : '0' + d
+      let h = parseInt(interval / 60 / 60 % 24)
+      h = h > 10 ? h : '0' + h
+      let m = parseInt(interval / 60 % 60)
+      m = m > 10 ? m : '0' + m
+      let s = parseInt(interval % 60)
+      s = s > 10 ? s : '0' + s
+      // console.log(s)
+      days.innerHTML = d
+      hour.innerHTML = h
+      minute.innerHTML = m
+      second.innerHTML = s
+    }
+  </script>
+</body>
+
+</html>
